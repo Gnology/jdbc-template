@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - classicmodels@localhost" uuid="90db708b-36dd-41df-8111-cbf36e6ca013">
+    <database-info product="MySQL" version="5.1.72-community" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="classicmodels"/>
+    <table name="customers" schema="" catalog="classicmodels" type="TABLE">
+      <column name="customerNumber" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="customerName" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="contactLastName" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="contactFirstName" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="addressLine1" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="addressLine2" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="state" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="postalCode" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="salesRepEmployeeNumber" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="creditLimit" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <primary-key name="PRIMARY" columns="customerNumber"/>
+      <foreign-key name="customers_ibfk_1" columns="salesRepEmployeeNumber" ref-table="employees" ref-schema="" ref-catalog="classicmodels" ref-columns="employeeNumber" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="orders_ibfk_1" table="orders" schema="" catalog="classicmodels" columns="customerNumber"/>
+      <exported-key name="payments_ibfk_1" table="payments" schema="" catalog="classicmodels" columns="customerNumber"/>
+    </table>
+    <table name="employees" schema="" catalog="classicmodels" type="TABLE">
+      <column name="employeeNumber" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="lastName" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="firstName" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="extension" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="officeCode" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="reportsTo" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="jobTitle" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="employeeNumber"/>
+      <foreign-key name="employees_ibfk_1" columns="reportsTo" ref-table="employees" ref-schema="" ref-catalog="classicmodels" ref-columns="employeeNumber" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="employees_ibfk_2" columns="officeCode" ref-table="offices" ref-schema="" ref-catalog="classicmodels" ref-columns="officeCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="customers_ibfk_1" table="customers" schema="" catalog="classicmodels" columns="salesRepEmployeeNumber"/>
+      <exported-key name="employees_ibfk_1" table="employees" schema="" catalog="classicmodels" columns="reportsTo"/>
+    </table>
+    <table name="offices" schema="" catalog="classicmodels" type="TABLE">
+      <column name="officeCode" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="addressLine1" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="addressLine2" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="state" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="postalCode" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <column name="territory" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="officeCode"/>
+      <exported-key name="employees_ibfk_2" table="employees" schema="" catalog="classicmodels" columns="officeCode"/>
+    </table>
+    <table name="orderdetails" schema="" catalog="classicmodels" type="TABLE">
+      <column name="orderNumber" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="productCode" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <column name="quantityOrdered" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="priceEach" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="orderLineNumber" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <primary-key name="PRIMARY" columns="orderNumber,productCode"/>
+      <foreign-key name="orderdetails_ibfk_1" columns="orderNumber" ref-table="orders" ref-schema="" ref-catalog="classicmodels" ref-columns="orderNumber" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="orderdetails_ibfk_2" columns="productCode" ref-table="products" ref-schema="" ref-catalog="classicmodels" ref-columns="productCode" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="orders" schema="" catalog="classicmodels" type="TABLE">
+      <column name="orderNumber" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="orderDate" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="requiredDate" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="shippedDate" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="status" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <column name="comments" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="customerNumber" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="orderNumber"/>
+      <foreign-key name="orders_ibfk_1" columns="customerNumber" ref-table="customers" ref-schema="" ref-catalog="classicmodels" ref-columns="customerNumber" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="orderdetails_ibfk_1" table="orderdetails" schema="" catalog="classicmodels" columns="orderNumber"/>
+    </table>
+    <table name="payments" schema="" catalog="classicmodels" type="TABLE">
+      <column name="customerNumber" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="checkNumber" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="paymentDate" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="amount" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <primary-key name="PRIMARY" columns="customerNumber,checkNumber"/>
+      <foreign-key name="payments_ibfk_1" columns="customerNumber" ref-table="customers" ref-schema="" ref-catalog="classicmodels" ref-columns="customerNumber" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="productlines" schema="" catalog="classicmodels" type="TABLE">
+      <column name="productLine" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="textDescription" sqlType="VARCHAR" precision="4000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="htmlDescription" sqlType="MEDIUMTEXT" precision="16777215" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="image" sqlType="MEDIUMBLOB" precision="16777215" scale="0" nullable="true" jdbcType="-4"/>
+      <primary-key name="PRIMARY" columns="productLine"/>
+      <exported-key name="products_ibfk_1" table="products" schema="" catalog="classicmodels" columns="productLine"/>
+    </table>
+    <table name="products" schema="" catalog="classicmodels" type="TABLE">
+      <column name="productCode" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <column name="productName" sqlType="VARCHAR" precision="70" scale="0" nullable="false" jdbcType="12"/>
+      <column name="productLine" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="productScale" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="productVendor" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="productDescription" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="quantityInStock" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="buyPrice" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="MSRP" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <primary-key name="PRIMARY" columns="productCode"/>
+      <foreign-key name="products_ibfk_1" columns="productLine" ref-table="productlines" ref-schema="" ref-catalog="classicmodels" ref-columns="productLine" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="orderdetails_ibfk_2" table="orderdetails" schema="" catalog="classicmodels" columns="productCode"/>
+    </table>
+  </data-source>
+</component>
