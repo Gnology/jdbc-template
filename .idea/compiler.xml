@@ -25,5 +25,8 @@
         <module name="jdbc-template" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jdbc-template" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

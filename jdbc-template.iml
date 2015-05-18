@@ -6,6 +6,8 @@
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/java/com/gnology/spring/dataaccess/AppConfiguration.java</file>
           <file>file://$MODULE_DIR$/src/main/resources/AppConfig.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/app-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/app-config.xml</file>
         </fileset>
       </configuration>
     </facet>
