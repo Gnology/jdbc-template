@@ -11,11 +11,20 @@ public class Main {
         ApplicationContext context = new ClassPathXmlApplicationContext("app-config.xml");
         ProductsRepository productsRepository = context.getBean("productsRepository", ProductsRepository.class);
         OfficesRepository officesRepository = context.getBean("officesRepository", OfficesRepository.class);
+        EmployeesRepository employeesRepository = context.getBean("employeesRepository", EmployeesRepository.class);
 
         List<Office> allOffices = officesRepository.getAllOffices();
 
         for (Office allOffice : allOffices) {
             System.out.println(allOffice);
+        }
+
+        System.out.println();
+
+        List<Employee> allEmployees = employeesRepository.getAllEmployees();
+
+        for (Employee allEmployee : allEmployees) {
+            System.out.println(allEmployee);
         }
     }
 }
