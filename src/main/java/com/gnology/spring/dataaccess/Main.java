@@ -14,9 +14,9 @@ public class Main {
         OfficesRepository officesRepository = context.getBean("officesRepository", OfficesRepository.class);
         EmployeesRepository employeesRepository = context.getBean("employeesRepository", EmployeesRepository.class);
 
-        List<Map<String, Object>> productsWithPriceRange = productsRepository.getProductsWithPriceRange(50.0, 60.0);
-        for (Map<String, Object> product : productsWithPriceRange) {
-            System.out.println(product);
+        List<Map<String, Object>> employeesbyParameters = employeesRepository.getEmployeesbyParameters("Sales Rep", "1");
+        for (Map<String, Object> employees : employeesbyParameters) {
+            System.out.println(employees);
         }
     }
 }
