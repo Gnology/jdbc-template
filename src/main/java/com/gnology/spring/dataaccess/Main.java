@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class Main {
@@ -13,18 +14,9 @@ public class Main {
         OfficesRepository officesRepository = context.getBean("officesRepository", OfficesRepository.class);
         EmployeesRepository employeesRepository = context.getBean("employeesRepository", EmployeesRepository.class);
 
-        List<Office> allOffices = officesRepository.getAllOffices();
-
-        for (Office allOffice : allOffices) {
-            System.out.println(allOffice);
-        }
-
-        System.out.println();
-
-        List<Employee> allEmployees = employeesRepository.getAllEmployees();
-
-        for (Employee allEmployee : allEmployees) {
-            System.out.println(allEmployee);
+        List<Map<String, Object>> productsWithPriceRange = productsRepository.getProductsWithPriceRange(50.0, 60.0);
+        for (Map<String, Object> product : productsWithPriceRange) {
+            System.out.println(product);
         }
     }
 }
