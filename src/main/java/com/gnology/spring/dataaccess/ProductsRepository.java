@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,9 +56,14 @@ public class ProductsRepository {
         params.put("minPrice", minPrice);
         params.put("maxPrice", maxPrice);
 //        parameters = new MapSqlParameterSource(params);
-
-
-
         return namedParameterJdbcTemplate.queryForList(sql, parameters);
     }
+
+    public List<Map<String, Object>> getProductsWithProductLine(List<String> productLines) {
+        String sql = "SELECT * FROM products WHERE productLine IN (:productLines)";
+        Map<String, List<String>> parameters = Collections.singletonMap("productLines", productLines);
+        return namedParameterJdbcTemplate.queryForList(sql, parameters);
+    }
+
 }
+

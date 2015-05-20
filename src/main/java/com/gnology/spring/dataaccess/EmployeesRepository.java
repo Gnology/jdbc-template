@@ -29,7 +29,7 @@ public class EmployeesRepository {
         String sql = "SELECT * FROM employees";
         return jdbcTemplate.query(sql, new RowMapper<Employee>() {
             @Override
-            public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
+                public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
                 Employee employee = new Employee();
                 employee.setFirstName(resultSet.getString("firstName"));
                 employee.setLastName(resultSet.getString("lastName"));
@@ -45,4 +45,9 @@ public class EmployeesRepository {
         return namedParameterJdbcTemplate.queryForList(sql, parameters);
     }
 
+    public List<Map<String, Object>> getEmployeesWithOfficeCode(List<String> officeCode) {
+        String sql = "SELECT * FROM employees WHERE officeCode IN (:officeCode)";
+        MapSqlParameterSource parameters = new MapSqlParameterSource("officeCode", officeCode);
+        return namedParameterJdbcTemplate.queryForList(sql, parameters);
+    }
 }
